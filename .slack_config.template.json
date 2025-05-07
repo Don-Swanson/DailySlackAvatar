@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "MyWorkspace": {
+      "token": "xoxp-YOUR_TOKEN_HERE"
+    },
+    "OtherWorkspace": {
+      "token": "xoxp-YOUR_TOKEN_HERE"
+    }
+  },
+  "default": "MyWorkspace"
+} 

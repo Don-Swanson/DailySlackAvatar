@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  dailyslackavatar:
+    image: donswanson/dailyslackavatar:latest
+    # Alternatively, you can build locally
+    build: .
+    volumes:
+      # Mount your image folders if you want to update them from host
+      - ./foreground:/app/foreground
+      - ./background:/app/background
+      - ./output:/app/output
+      # Mount the config file for persistence
+      - ./.slack_config.json:/app/.slack_config.json
+    environment:
+      # Optional: Set environment variables if not using the config file
+      - SLACK_USER_TOKEN=${SLACK_USER_TOKEN:-}
+      # Customize the cron schedule (default: "0 9 * * *" - daily at 9 AM)
+      # Examples:
+      # - "0 9 * * *"         # Every day at 9 AM
+      # - "0 9 * * 1-5"       # Every weekday at 9 AM
+      # - "0 9,17 * * *"      # Every day at 9 AM and 5 PM
+      # - "0 */2 * * *"       # Every 2 hours
+      # - "0 12 1 * *"        # First day of each month at noon
+      - CRON_SCHEDULE=${CRON_SCHEDULE:-0 9 * * *}
+    restart: unless-stopped 

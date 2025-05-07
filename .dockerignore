@@ -1,0 +1,43 @@
+# Git files
+.git
+.gitignore
+
+# Docker files
+Dockerfile
+Dockerfile.cron
+docker-compose.yml
+.dockerignore
+
+# Environment variables
+.env
+
+# Output directories
+output/*
+
+# Example images
+example_images/
+
+# Don't copy Slack config by default (it will be volume mounted)
+.slack_config.json
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg 

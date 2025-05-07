@@ -1,13 +1,21 @@
-# Byte-compiled / optimized / DLL files
+# Slack token config
+.slack_config.json
+
+# Image and output folders - ignore contents but keep folders
+background/*
+!background/.gitkeep
+foreground/*
+!foreground/.gitkeep
+output/*
+!output/.gitkeep
+
+# Python cache files
 __pycache__/
 *.py[cod]
 *$py.class
-
-# C extensions
 *.so
-
-# Distribution / packaging
 .Python
+env/
 build/
 develop-eggs/
 dist/
@@ -19,51 +27,25 @@ lib64/
 parts/
 sdist/
 var/
-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-MANIFEST
 
-# PyInstaller
-*.manifest
-*.spec
+# OS specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
-.pytest_cache/
-
-# Environments
+# Docker related
+.dockerenv
 .env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
 
-# VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
-# Project specific
-.slack_config.json
-output/
-.DS_Store 
-background/
-foreground/
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo 

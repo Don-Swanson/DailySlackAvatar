@@ -15,7 +15,7 @@ Automatically create and update unique Slack profile photos by layering random i
 
 1. Clone this repository:
    ```
-   git clone https://github.com/Don-Swanson/DailySlackAvatar.git
+   git clone https://github.com/dimfeld_adobe/DailySlackAvatar.git
    cd daily-slack-avatar
    ```
 
@@ -174,5 +174,88 @@ This project is released into the public domain using the Unlicense - see the [L
 
 ## Acknowledgments
 
-- Created with assistance from Claude AI
-- Inspired by the need to keep Slack profiles interesting 
+- Inspired by the need to keep Slack profiles interesting
+
+## Docker Usage
+
+You can easily run Daily Slack Avatar using Docker:
+
+```bash
+# Pull the Docker image
+docker pull donswanson/dailyslackavatar:latest
+
+# Run with your configuration and image folders
+docker run -d --name dailyslackavatar \
+  -v /path/to/foreground:/app/foreground \
+  -v /path/to/background:/app/background \
+  -v /path/to/output:/app/output \
+  -v /path/to/.slack_config.json:/app/.slack_config.json \
+  donswanson/dailyslackavatar:latest
+```
+
+### Using Docker Compose
+
+For scheduled updates, you can use the included Docker Compose file:
+
+1. Clone this repository or download the docker-compose.yml file
+2. Make sure you have your image folders ready (background/ and foreground/)
+3. Set up your Slack token in .slack_config.json
+4. Run the container:
+
+```bash
+# Using the pre-built image from Docker Hub
+docker-compose up -d
+
+# Or build the image locally
+docker-compose build
+docker-compose up -d
+```
+
+Your Slack avatar will be updated according to the configured schedule (default: daily at 9 AM).
+
+### Customizing the Update Schedule
+
+You can customize when your avatar updates by setting the `CRON_SCHEDULE` environment variable to any valid cron expression:
+
+```bash
+# Update every weekday at 9 AM
+CRON_SCHEDULE="0 9 * * 1-5" docker-compose up -d
+
+# Update twice daily at 9 AM and 5 PM
+CRON_SCHEDULE="0 9,17 * * *" docker-compose up -d
+
+# Update every hour
+CRON_SCHEDULE="0 * * * *" docker-compose up -d
+```
+
+Or when using Docker directly:
+
+```bash
+docker run -d --name dailyslackavatar \
+  -e CRON_SCHEDULE="0 9 * * 1-5" \
+  -v /path/to/foreground:/app/foreground \
+  -v /path/to/background:/app/background \
+  -v /path/to/output:/app/output \
+  -v /path/to/.slack_config.json:/app/.slack_config.json \
+  donswanson/dailyslackavatar:latest
+```
+
+### Running Updates Manually
+
+To trigger an avatar update manually:
+
+```bash
+docker-compose exec dailyslackavatar ./update_avatar.sh
+```
+
+## Security Note
+
+This project requires a Slack API token with `users.profile:write` permission, which should be kept private:
+
+1. Never commit your `.slack_config.json` file to version control
+2. Use the provided `.slack_config.template.json` as a reference
+3. If you accidentally expose your token, revoke it immediately at https://api.slack.com/apps
+
+The Docker image does not include any tokens by default - you must provide your own token using either:
+- A volume-mounted `.slack_config.json` file
+- The `SLACK_USER_TOKEN` environment variable 

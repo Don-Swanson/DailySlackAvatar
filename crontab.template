@@ -1,0 +1,4 @@
+# Cron schedule: ${CRON_SCHEDULE}
+${CRON_SCHEDULE} cd /app && ./update_avatar.sh >> /var/log/cron.log 2>&1
+
+# Empty line at the end of the file is required for cron to work properly 

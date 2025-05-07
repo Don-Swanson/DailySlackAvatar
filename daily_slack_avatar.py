@@ -5,7 +5,7 @@
 # This script takes a random PNG from a foreground folder and layers it on top 
 # of a random PNG from a background folder to create unique daily Slack avatars.
 # 
-# Author: Don-Swanson
+# Author: Created with assistance from Claude AI
 
 import os
 import random
