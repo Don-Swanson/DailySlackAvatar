@@ -7,7 +7,7 @@ set -e
 date
 
 # Run the script with upload
-python daily_slack_avatar.py --upload
+/usr/local/bin/python3 daily_slack_avatar.py --upload
 
 # Print success message
 echo "Avatar updated successfully"
