@@ -15,7 +15,7 @@ Automatically create and update unique Slack profile photos by layering random i
 
 1. Clone this repository:
    ```
-   git clone https://github.com/dimfeld_adobe/DailySlackAvatar.git
+   git clone https://github.com/Don-Swanson/DailySlackAvatar.git
    cd daily-slack-avatar
    ```
 
